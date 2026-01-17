@@ -1,14 +1,15 @@
 const resolver = require('../services/resolver.service');
+const detectPlatform = require('../utills/detectPlatform');
 
 exports.searchTrack = async (req, res) => {
-    const { query } = req.query;
+    const {query}  = req.body;
     if (!query) {
         return res.status(400).json({ error: 'Query parameter is required' });
     }
 
     try{
-        const results = await resolver.resolve(query);
-        res.json( results );
+        detectPlatform(query).then(res => console.log(res))
+
     } catch (error) {
         res.status(500).json({ error: 'An error occurred while searching for tracks' });
     }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Box, TextField, IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -6,8 +7,14 @@ function App() {
   const [query, setQuery] = useState('');
 
   const handleSearch = () => {
-    console.log('Search query:', query);
-    // Здесь можно добавить обработку поиска
+    console.log(query)
+    axios.post('http://localhost:3000/api/tracks/search', {query})
+      .then(response => {
+        console.log('Результат поиска', response.data);
+      })
+      .catch(error => {
+        console.error('Ошибка при поиске:', error);
+      });
   };
 
   return (
