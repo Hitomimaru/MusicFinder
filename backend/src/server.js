@@ -1,14 +1,8 @@
-import express from 'express'
-import dotenv from 'dotenv'
+require("dotenv").config();
+const app = require("./app");
+const PORT = process.env.PORT || 3000;
 
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
-dotenv.config()
-
-const app = express()
-app.use(express.json())
-
-app.use()
-
-app.listen(3000, () => {
-    console.log("API running")
-})
