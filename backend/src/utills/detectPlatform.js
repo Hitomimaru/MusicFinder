@@ -1,9 +1,10 @@
 const getSpotifyByLink = require('./Spotify/getSpotifyByLink');
 
 
+
 async function detectPlatform(input) {
   if (input.includes('spotify.com')) {
-
+    
     return await getSpotifyByLink(input);
   }
   if (input.includes('youtube.com') || input.includes('youtu.be')) return 'YouTube';

@@ -8,7 +8,9 @@ exports.searchTrack = async (req, res) => {
     }
 
     try{
-        detectPlatform(query).then(res => console.log(res))
+        const trackData = await detectPlatform(query);
+
+    console.log('Result from detectPlatform:', trackData);
 
     } catch (error) {
         res.status(500).json({ error: 'An error occurred while searching for tracks' });
