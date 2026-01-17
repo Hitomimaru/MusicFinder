@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { Box, TextField, IconButton, Paper } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [query, setQuery] = useState('');
+
+  const handleSearch = () => {
+    console.log('Search query:', query);
+    // Здесь можно добавить обработку поиска
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Box
+      sx={{
+        height: '100vh',
+        width: '100vw',
+        bgcolor: 'black', // чёрный фон
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Paper
+        component="form"
+        onSubmit={(e) => { e.preventDefault(); handleSearch(); }}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          borderRadius: '50px', // сильно закруглённый
+          padding: '0.2rem 0.5rem',
+          maxWidth: 400,
+          width: '100%',
+          bgcolor: 'grey.900',
+        }}
+        elevation={3}
+      >
+        <TextField
+          variant="standard"
+          placeholder="Search..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          sx={{
+            flex: 1,
+            input: { color: 'white', padding: '10px 12px' },
+            '& .MuiInput-underline:before, & .MuiInput-underline:after': {
+              borderBottom: 'none', // убираем линии MUI
+            },
+          }}
+        />
+        <IconButton
+          type="submit"
+          sx={{ color: 'white' }}
+        >
+          <SearchIcon />
+        </IconButton>
+      </Paper>
+    </Box>
+  );
 }
 
-export default App
+export default App;
