@@ -9,13 +9,13 @@ import appleLogo from '../assets/apple.png';
 import youtubeLogo from '../assets/youtube.png';
 
 const serviceLogos = {
-  spotify: spotifyLogo,
-  apple: appleLogo,
-  youtube: youtubeLogo,
+  'Spotify': spotifyLogo,
+  'Apple': appleLogo,
+  'Youtube': youtubeLogo,
 };
 
 function TrackCard({ track }) {
-  // track: { service: 'spotify' | 'apple' | 'youtube', title, artist, url }
+  console.log(track);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(track.url);
@@ -40,7 +40,7 @@ function TrackCard({ track }) {
     >
       {/* Логотип сервиса */}
       <Avatar
-        src={serviceLogos[track.service]}
+        src={serviceLogos[track.platform]}
         alt={track.service}
         sx={{ width: 56, height: 56, mr: 2 }}
       />
@@ -48,7 +48,7 @@ function TrackCard({ track }) {
       {/* Информация о треке */}
       <Box sx={{ flex: 1 }}>
         <Typography variant="subtitle1" noWrap>
-          {track.title}
+          {track.name}
         </Typography>
         <Typography variant="body2" color="grey.400" noWrap>
           {track.artist}

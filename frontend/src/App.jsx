@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import TrackCard from './TrackCard.jsx';
 import axios from 'axios';
 import { Box, TextField, IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 function App() {
   const [query, setQuery] = useState('');
+  const [tracks, setTracks] = useState([]);
 
   const handleSearch = () => {
     console.log(query)
     axios.post('http://localhost:3000/api/tracks/search', {query})
       .then(response => {
-        console.log('Результат поиска', response.data);
+        setTracks(response.data);
       })
       .catch(error => {
         console.error('Ошибка при поиске:', error);
@@ -24,6 +26,7 @@ function App() {
         width: '100vw',
         bgcolor: 'black', // чёрный фон
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -62,6 +65,11 @@ function App() {
           <SearchIcon />
         </IconButton>
       </Paper>
+      <Box sx={{ width: '100%', maxWidth: 400, mt: 4, px: 2 }}>
+        {tracks.map((track, index) => (
+          <TrackCard key={index} track={track} />
+        ))}
+      </Box>
     </Box>
   );
 }
