@@ -1,0 +1,12 @@
+# node
+node_modules/
+.env
+
+# frontend
+frontend/dist/node_modules/
+
+#backend
+backend/dist/node_modules/
+
+# logs
+*.log
